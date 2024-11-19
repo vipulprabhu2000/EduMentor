@@ -30,8 +30,7 @@ def Add_Student(request):
             Student_add.save()
             return redirect("Home")
 
-  
-        
+     
 
 def Home(request):
     Student_list=Student.objects.all()
