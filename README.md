@@ -1,5 +1,5 @@
 ### EduMentor Website
-A Website designed for Teachers to Add, View, update, delete Students Records. 
+EduMentor Website is tailored for teachers to efficiently manage student records. It provides features to add new student records, view existing records, update details, and delete entries as needed. This user-friendly platform simplifies record management for educators.
 
 ## Get Started
 Step 1:
