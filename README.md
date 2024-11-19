@@ -1,5 +1,5 @@
 ### EduMentor Website
-EduMentor Website is tailored for teachers to efficiently manage student records. It provides features to add new student records, view existing records, update details, and delete entries as needed. This user-friendly platform simplifies record management for educators.
+EduMentor Website is tailored for teachers to efficiently manage student records. It provides features to add new student records, view existing records, update details, and delete entries as needed only to the authenticated Users. This user-friendly platform simplifies record management for educators.
 
 ## Get Started
 Step 1:
