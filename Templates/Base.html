@@ -23,7 +23,9 @@
 
   </head>
   <body>
+    {% if user.is_authenticated %}
     {% include 'Navbar.html' %}
+    {% endif %}
     
     {% if messages %}
     {% for message in messages %}
