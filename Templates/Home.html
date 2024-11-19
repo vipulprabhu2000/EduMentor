@@ -1,0 +1,188 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<style>
+    .Add-Popup{
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+        position: absolute;
+        top:50%;
+        left:50%;
+        width: 550px;
+        padding-left: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        transform: translate(-50%,-50%);
+        visibility: hidden;
+        background-color:  #f2f2f2;
+    }
+
+    .open-popup{
+        box-shadow: 0 2px 5px rgba(0,0,0,.2);
+        visibility: visible;
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+    
+    .btn{
+        margin-top: 5px;
+        width: 150px;
+        background-color:black;
+        color:white;
+    }
+    
+    input[type=text]{
+        width: 80%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+      
+      label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+      }
+    
+      .container {
+        margin-top: 15px;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+
+      }
+      
+      .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+      }
+      
+      .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+      }
+      .Submit{
+        margin-top: 5px;
+        margin-left: 50%;
+        width:50px;
+      }
+      a{
+        text-decoration: none;
+        color: white;
+      }
+      .dropdown {
+        opacity: 0;
+      }
+    .dropdown:hover {
+      opacity: 1;
+
+    }
+     
+</style>
+
+<div class="container">
+    <center>
+<table class="table table-hover">
+    <thead>
+        <tr>
+          <th scope="col">Student Name</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Marks</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for students in Student_list%}
+        <tr>
+          <th scope="row">{{students.Name}}</th>
+          <td scope="row">{{students.Subject}}</td>
+          <td scope="row" >{{students.Marks}}</td>
+          <td scope="row">
+            <div class="dropdown">
+              <button id="ActionBtn" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Action
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" data-name="{{students.Name}}" data-subject="{{students.Subject}}" data-marks="{{students.Marks}}" onclick="PrefilledPopup(this)">Edit</a></li>
+                <li><a class="dropdown-item" href="{% url 'Delete_Student' students.Name students.Subject students.Marks %}">Delete</a></li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+    {% endfor %}
+
+      </tbody>
+  </table>
+</center>
+<button class="btn" onclick="openPopup()">Add</button>
+</div>
+
+<div class="Add-Popup" id="Add-Popup">
+    <form method="POST" action="{% url 'Add_Student' %}">
+        {% csrf_token %}
+            <div class="row">
+              <div class="col-25">
+                <label for="fname">Name</label>
+              </div>
+              <div class="col-75">
+                <input type="text" id="NameField" name="name" placeholder="Your name.." value=" ">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                  <label for="fname">Subject</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="SubjectField" name="subject" placeholder="Subject Name.." value=" ">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-25">
+                  <label for="fname">Marks</label>
+                </div>
+                <div class="col-75">
+                  <input type="text" id="MarksField" name="marks" placeholder="Marks Scored.." value=" ">
+                </div>
+              </div>
+              <div class="Submit">
+                <button class="btn" type="submit" onclick="closePopup()">Add</button>
+              </div>
+
+              
+    </form>
+</div>
+
+
+
+<script>
+let popup=document.getElementById("Add-Popup");
+
+
+function PrefilledPopup(button){
+  const StudentNameField=document.getElementById("NameField");
+  const StudentSubjectField=document.getElementById("SubjectField");
+  const StudentMarksField=document.getElementById("MarksField");
+
+  StudentNameField.value=button.dataset.name; 
+  StudentSubjectField.value=button.dataset.subject; 
+  StudentMarksField.value=button.dataset.marks;
+  popup.classList.add("open-popup");
+
+}
+
+function openPopup(){
+    popup.classList.add("open-popup");
+
+}
+function closePopup(){
+    popup.classList.remove("open-popup");
+
+}
+
+
+
+
+</script>
+{% endblock %}
