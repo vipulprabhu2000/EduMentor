@@ -18,3 +18,24 @@ Now the Packages are installed. We now need to run the Project.
 ```
 python manage.py runserver
 ```
+
+Step 4:
+Create a Superuser to view the database at http://127.0.0.1:8000/admin if running on default IP
+By using below command
+```
+python3 manage.py createsuperuser
+```
+
+
+Home Page :- 
+![image](https://github.com/user-attachments/assets/8c3b06ea-88ac-455f-8b98-89e6421854eb)
+
+Modal/Popup Page:-
+![image](https://github.com/user-attachments/assets/bb43d2a4-dd2c-4ebb-9697-b0490d0ef304)
+
+Login Page:-
+![image](https://github.com/user-attachments/assets/cbe090ed-71d1-4d66-859a-ca803a6d1225)
+
+
+
+
