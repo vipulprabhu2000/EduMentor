@@ -13,14 +13,10 @@ def Delete_Student(request,name,subject,marks):
     
 
 def Add_Student(request):
-    print(request)
     if request.method=="POST":
         Name=request.POST["name"]
         Subject=request.POST["subject"]
-
-
         Student_Profile=Student.objects.filter(Name__icontains=Name,Subject__icontains=Subject)
-
         if Student_Profile:
                 Student_Profile.update(Marks=request.POST["marks"])
                 messages.success(request,"The Student Already Existed and the record has been updated")
@@ -44,7 +40,6 @@ def login_user(request):
         user =authenticate(request,username=username,password=password)
         if user is not None:
             login(request,user)
-            print("Successfull")
             messages.success(request,("You have Succcesfully Logged in"))
             return redirect("Home")
         else:
